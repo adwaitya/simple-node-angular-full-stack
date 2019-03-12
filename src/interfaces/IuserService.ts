@@ -20,6 +20,13 @@ export interface IUserService {
   find(code: string): Promise<IUserModel>;
 
     /**
+     * @param {string} email
+     * @returns {Promise<IUserModel>}
+     * @memberof IUserService
+     */
+  findByEmail(email: string): Promise<IUserModel>;
+
+    /**
      * @param {IUserModel} IUserModel
      * @returns {Promise<IUserModel>}
      * @memberof IUserService

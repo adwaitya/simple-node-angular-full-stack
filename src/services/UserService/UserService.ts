@@ -48,6 +48,22 @@ class UserService implements IUserService {
     }
   }
 
+   /**
+     * @param {string} email
+     * @returns {Promise < IUserModel >}
+     * @memberof UserService
+     */
+  async findByEmail(emailId: string): Promise < IUserModel > {
+    try {
+      return await UserModel.findOne({
+        email: emailId,
+      });
+    } catch (error) {
+      console.log('err');
+      throw new Error(error.message);
+    }
+  }
+
     /**
      * @param {IUserModel} user
      * @returns {Promise < IUserModel >}
@@ -56,13 +72,11 @@ class UserService implements IUserService {
   async insert(body: IUserModel): Promise < IUserModel > {
     try {
       const validate: Joi.ValidationResult < IUserModel > = UserValidation.createUser(body);
-
+      console.log('validate', validate);
       if (validate.error) {
         throw new Error(validate.error.message);
       }
-
       const user: IUserModel = await UserModel.create(body);
-
       return user;
     } catch (error) {
       throw new Error(error.message);
@@ -95,6 +109,7 @@ class UserService implements IUserService {
       throw new Error(error.message);
     }
   }
+
 }
 
 export default new UserService();

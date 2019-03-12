@@ -1,6 +1,7 @@
 // default config
 const config: any = {
   port: process.env.PORT || 8443,
+  secret: 'supersecret',
   env: 'development',
   database: {
     client: 'mongodb',

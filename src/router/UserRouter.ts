@@ -1,5 +1,6 @@
 import UserController from '../controllers/UserController';
 import { Router } from 'express';
+import { isUserAuthenticated } from '../config/middleware/AuthMiddleware';
 
 /**
  * @export
@@ -22,10 +23,10 @@ class UserRouter {
      */
   public routes(): void {
 
-    this.router.get('/', UserController.findAll.bind(UserController));
-    this.router.get('/:id', UserController.find.bind(UserController));
+    this.router.get('/', isUserAuthenticated, UserController.findAll.bind(UserController));
+    this.router.get('/:id', isUserAuthenticated, UserController.find.bind(UserController));
     this.router.post('/', UserController.create.bind(UserController));
-    this.router.delete('/:id', UserController.delete.bind(UserController));
+    this.router.delete('/:id', isUserAuthenticated, UserController.delete.bind(UserController));
   }
 }
 

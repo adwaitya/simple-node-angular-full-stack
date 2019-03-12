@@ -60,6 +60,7 @@ class UserValidation {
       email: Joi.string().email({
                 minDomainAtoms: 2,
             }).required(),
+      password: Joi.string().required(),
     });
 
     return Joi.validate(params, schema);
