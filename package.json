@@ -1,7 +1,7 @@
 {
   "name": "node-restapi-sample",
   "version": "1.0.0",
-  "description": "Rest api with NODE",
+  "description": "Rest api with NODE and integrate with Angular 7",
   "main": "server.js",
   "scripts": {
     "build": "tsc && npm run lint",
