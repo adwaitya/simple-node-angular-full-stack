@@ -10,7 +10,7 @@ export interface IUserService {
      * @returns {Promise<IUserModel[]>}
      * @memberof IUserService
      */
-  findAll(): Promise<IUserModel[]>;
+  findAll(page:number, perpage:number): Promise<IUserModel[]>;
 
     /**
      * @param {string} code
@@ -38,5 +38,12 @@ export interface IUserService {
      * @returns {Promise<IUserModel>}
      * @memberof IUserService
      */
-  delete(id: string): Promise<IUserModel>;
+  delete(id: string): Promise<Boolean>;
+
+  /**
+     * @returns {Promise<Number>}
+     * @memberof IUserService
+  */
+
+  findTotalCount(): Promise<Number>;
 }

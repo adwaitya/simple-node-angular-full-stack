@@ -6,6 +6,7 @@ import * as express from 'express';
 import * as helmet from 'helmet';
 import { IServer, CustomResponse } from '../../interfaces/ServerInterface';
 import { default as HttpError } from '../error';
+import { isUserAuthenticated } from './AuthMiddleware';
 
 /**
  * @export
@@ -32,6 +33,8 @@ export default class Middleware {
     server.app.use(helmet());
      // providing a Connect/Express middleware that can be used to enable CORS with various options
     server.app.use(cors());
+    // authentication
+    // server.app.use(isUserAuthenticated);
     // cors
     server.app.use((req, res, next) => {
       res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS ');

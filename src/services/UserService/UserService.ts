@@ -15,9 +15,14 @@ class UserService implements IUserService {
      * @returns {Promise < IUserModel[] >}
      * @memberof UserService
      */
-  async findAll(): Promise < IUserModel[] > {
+  async findAll(pageReq:number, perpage:number): Promise < IUserModel[] > {
     try {
-      return await UserModel.find({});
+      const page = pageReq;
+      const pageSize = perpage;
+      const response = await UserModel.find({})
+      .skip((pageSize * page) - pageSize)
+      .limit(pageSize);
+      return await response;
     } catch (error) {
       throw new Error(error.message);
     }
@@ -79,6 +84,9 @@ class UserService implements IUserService {
       const user: IUserModel = await UserModel.create(body);
       return user;
     } catch (error) {
+      // throw new Error(error.message);
+      console.log(`Unable to create user: ${error.message}`);
+      // return false;
       throw new Error(error.message);
     }
   }
@@ -88,7 +96,7 @@ class UserService implements IUserService {
      * @returns {Promise < IUserModel >}
      * @memberof UserService
      */
-  async delete(id: string): Promise < IUserModel > {
+  async delete(id: string): Promise < Boolean > {
     try {
       const validate: Joi.ValidationResult < {
         id: string
@@ -104,7 +112,22 @@ class UserService implements IUserService {
         _id: Types.ObjectId(id),
       });
 
-      return user;
+      return true;
+    } catch (error) {
+      // throw new Error(error.message);
+      console.log(`Unable to delete the user ${error.message}`);
+      return false;
+    }
+  }
+    /**
+     * @returns {Promise < Number >}
+     * @memberof UserService
+     */
+  async findTotalCount(): Promise < Number > {
+    try {
+      const response = await UserModel.find({}).count();
+
+      return await response;
     } catch (error) {
       throw new Error(error.message);
     }

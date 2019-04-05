@@ -33,6 +33,10 @@ const userSchema: Schema = new Schema({
     type: Date,
     default: new Date(),
   },
+  updateAt : {
+    type: Date,
+    default: new Date(),
+  },
 },                                    {
   collection: 'usermodel',
   versionKey: false,
@@ -42,17 +46,7 @@ userSchema.pre<IUserModel>('save', function (next) {
   console.log(`Using this: ${ this.password }`);
   // tslint:disable-next-line:no-this-assignment
   const user = this;
-  // bcrypt.hash(user.password, 10, (err, hash) => {
-  //   console.log('hash', hash);
-  //   if (err) {
-  //     console.log('err', err);
-  //     return next(err);
-  //   }
-  // // override the cleartext password with the hashed one
-  //   user.password = hash;
-  //   console.log('user', user);
-  //   next();
-  // });
+  user.updatedAt = new Date();
   // tslint:disable-next-line:ter-prefer-arrow-callback
   bcrypt.hash(user.password, 10, function (err, hash) {
     if (err) {

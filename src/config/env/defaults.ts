@@ -1,6 +1,6 @@
 // default config
 const config: any = {
-  port: process.env.PORT || 8443,
+  port: process.env.PORT || 8444,
   secret: 'supersecret',
   env: 'development',
   database: {
