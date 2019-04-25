@@ -8,7 +8,7 @@
     "clean": "rimraf ./dist",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "tsc": "tsc",
-    "start": "npm run build && node dist/server/server.js"
+    "start": "npm run build && node dist/server/server.js --inspect=9222"
   },
   "author": "Adwaitya Sadhukhan",
   "license": "ISC",
