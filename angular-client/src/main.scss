@@ -1,0 +1,33 @@
+@import 'styles-variables';
+
+@import '~bootstrap/scss/bootstrap';
+@import 'style-reset';
+
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+@import './themes/black-theme.scss';
+@import './themes/light-theme.scss';
+
+// import custom component themes here
+@import 'styles-reset.scss-theme';
+// @import 'app/modules/home/pages/project-item/project-container.component.scss-theme.scss';
+
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+
+@mixin custom-components-theme($theme) {
+  @include my-styles-reset-theme($theme);
+  // @include my-project-container-component-theme($theme);
+}
+
+.my-light-theme {
+  @include angular-material-theme($my-light-theme);
+  @include custom-components-theme($my-light-theme);
+}
+
+.my-dark-theme {
+  @include angular-material-theme($my-black-theme);
+  @include custom-components-theme($my-black-theme);
+}

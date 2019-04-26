@@ -1,0 +1,31 @@
+<div class="wrapper">
+  <div class="toolbar">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <div class="container">
+                <span routerLink="" class="branding spacer center d-none d-sm-inline d-md-none">
+                  {{ 'Angular 7 With Node' }}
+                </span>
+                <span routerLink="" class="branding spacer d-none d-md-inline">
+                  {{ 'Angular 7 With Node' }}
+                </span>
+                <span class="d-none d-md-inline">
+                  <button mat-button class="nav-button" *ngFor="let item of navItems" [routerLink]="[item.link]"
+                    routerLinkActive="active">
+                    {{ item.title }}
+                  </button>
+                </span>
+                <div fxFlex fxLayout fxLayoutAlign="flex-end">
+        
+                    <a  (click)="logout()">
+                        
+                        Log Out
+                        </a>
+            
+                </div>
+              </div>
+        </mat-toolbar-row>
+      
+    </mat-toolbar>
+  </div>
+</div>
