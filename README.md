@@ -1,4 +1,4 @@
-# node-rest-api-sample
+# simple-node-angular-full-stack
 
 This is a boilerplate to build a full stack web application using Angular 7, Node JS, Express JS and MongoDB. It is also configured with tslint, typescript .
 
